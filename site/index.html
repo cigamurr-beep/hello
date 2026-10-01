@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Weidian Finds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: sticky shop bar, filter rail of category chips, dense product grid; product view = gallery + QC wall + agent buttons */
+:root {
+  --bg: #f3f4f7;
+  --surface: #ffffff;
+  --surface-2: #e8eaf0;
+  --fg: #12141b;
+  --muted: #5d6273;
+  --line: #d6d9e2;
+  --accent: #3a5bff;
+  --accent-fg: #ffffff;
+  --qc: #0f9d6b;
+  --warn-bg: #fff4d6;
+  --warn-fg: #6b4e00;
+  --font-display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --radius: 10px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c0d12; --surface: #15171f; --surface-2: #1f2230; --fg: #eef0f6; --muted: #9298ab;
+    --line: #2a2e3d; --accent: #7088ff; --accent-fg: #0c0d12; --qc: #3ccf95; --warn-bg: #2e2610; --warn-fg: #f3d27a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c0d12; --surface: #15171f; --surface-2: #1f2230; --fg: #eef0f6; --muted: #9298ab;
+  --line: #2a2e3d; --accent: #7088ff; --accent-fg: #0c0d12; --qc: #3ccf95; --warn-bg: #2e2610; --warn-fg: #f3d27a;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--fg); font: 15px/1.5 var(--font-body); }
+img { max-width: 100%; display: block; }
+[hidden] { display: none !important; }
+a { color: inherit; }
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: 16px; }
+
+/* Top bar */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.bar .wrap { display: flex; align-items: center; gap: 16px; padding-block: 12px; flex-wrap: wrap; }
+.logo { font-family: var(--font-display); font-weight: 800; font-size: 1.45rem; letter-spacing: -0.02em; text-decoration: none; display: flex; align-items: baseline; gap: 6px; }
+.logo span { color: var(--accent); }
+.search { flex: 1 1 260px; min-width: 0; position: relative; }
+.search input { width: 100%; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); }
+.controls { display: flex; gap: 8px; align-items: center; }
+.controls select { padding: 9px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; }
+
+/* Intro */
+.intro { padding-block: 36px 20px; display: grid; gap: 10px; }
+.intro h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; letter-spacing: -0.03em; margin: 0; text-wrap: balance; }
+.intro p { margin: 0; color: var(--muted); max-width: 62ch; }
+.stats { display: flex; gap: 18px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.stats b { color: var(--fg); font-weight: 500; }
+
+.notice { margin-block: 4px 0; padding: 10px 14px; border-radius: var(--radius); background: var(--warn-bg); color: var(--warn-fg); font-size: 0.9rem; }
+
+/* Chips */
+.chips { display: flex; gap: 8px; overflow-x: auto; padding-block: 14px; scrollbar-width: none; }
+.chip { flex: none; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: transparent; cursor: pointer; font-size: 0.88rem; white-space: nowrap; }
+.chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.chip small { font-family: var(--font-mono); opacity: 0.6; margin-left: 4px; }
+
+/* Grid */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; padding-block: 6px 48px; }
+@media (max-width: 480px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } }
+.card { display: flex; flex-direction: column; text-decoration: none; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .15s ease, border-color .15s ease; min-width: 0; }
+.card:hover { transform: translateY(-2px); border-color: var(--accent); }
+.thumb { position: relative; aspect-ratio: 1; background: var(--surface-2); max-width: 100%; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; }
+.badge { position: absolute; top: 8px; left: 8px; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 7px; border-radius: 6px; background: var(--qc); color: #fff; }
+.card-body { padding: 10px 12px 12px; display: grid; gap: 4px; min-width: 0; }
+.card-brand { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.card-name { font-weight: 500; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.price { font-family: var(--font-mono); font-weight: 500; font-variant-numeric: tabular-nums; }
+.price small { color: var(--muted); font-size: 0.8em; margin-left: 6px; }
+.empty { padding: 48px 0; color: var(--muted); text-align: center; grid-column: 1 / -1; }
+
+/* Product view */
+.back { display: inline-flex; gap: 6px; align-items: center; margin-block: 20px 12px; background: none; border: 0; padding: 0; color: var(--muted); cursor: pointer; }
+.back:hover { color: var(--fg); }
+.product { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 36px; padding-bottom: 32px; }
+@media (max-width: 820px) { .product { grid-template-columns: minmax(0, 1fr); gap: 20px; } }
+.main-img { aspect-ratio: 1; border-radius: var(--radius); overflow: hidden; background: var(--surface-2); max-width: 100%; }
+.main-img img { width: 100%; height: 100%; object-fit: cover; }
+.info { display: grid; gap: 14px; align-content: start; min-width: 0; }
+.info h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.6rem, 3.4vw, 2.4rem); line-height: 1.05; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+.info .price { font-size: 1.5rem; }
+.meta { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin: 0; font-size: 0.9rem; }
+.meta dt { color: var(--muted); }
+.meta dd { margin: 0; font-family: var(--font-mono); font-size: 0.85rem; word-break: break-all; }
+.notes { color: var(--muted); margin: 0; }
+.label { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 0; }
+.agents { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+.btn { display: flex; justify-content: center; align-items: center; gap: 6px; padding: 11px 14px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.92rem; border: 1px solid var(--line); background: var(--surface); }
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+.row { display: flex; gap: 8px; flex-wrap: wrap; }
+.row .btn { flex: 1 1 160px; }
+
+/* QC section */
+.qc { border-top: 1px solid var(--line); padding-block: 28px 56px; display: grid; gap: 16px; }
+.qc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.qc-head h3 { font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; margin: 0; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; }
+.qc-count { font-family: var(--font-mono); font-size: 0.8rem; padding: 3px 8px; border-radius: 6px; background: var(--qc); color: #fff; }
+.qc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.qc-grid button { padding: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; cursor: zoom-in; background: var(--surface-2); aspect-ratio: 3 / 4; max-width: 100%; }
+.qc-grid img { width: 100%; height: 100%; object-fit: cover; }
+.qc-empty { color: var(--muted); border: 1px dashed var(--line); border-radius: var(--radius); padding: 24px; text-align: center; }
+
+.related h3 { font-family: var(--font-display); font-size: 1.3rem; margin: 0; }
+
+/* Lightbox */
+.lightbox { position: fixed; inset: 0; z-index: 50; background: rgba(5, 6, 10, 0.92); display: grid; grid-template-rows: auto 1fr auto; padding: calc(env(safe-area-inset-top, 0px) + 12px) 16px calc(env(safe-area-inset-bottom, 0px) + 12px); color: #eef0f6; }
+.lb-top { display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 0.85rem; }
+.lb-stage { display: grid; place-items: center; min-height: 0; }
+.lb-stage img { max-height: 100%; max-width: 100%; object-fit: contain; border-radius: 6px; }
+.lb-nav { display: flex; justify-content: center; gap: 12px; }
+.lb-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #eef0f6; border-radius: 999px; padding: 8px 18px; cursor: pointer; }
+
+footer { border-top: 1px solid var(--line); padding-block: 24px; color: var(--muted); font-size: 0.85rem; }
+
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#" id="home-link">Weidian<span>Finds</span></a>
+    <div class="search"><input id="q" type="search" placeholder="Search shoes, hoodies, brands…" aria-label="Search products"></div>
+    <div class="controls">
+      <select id="sort" aria-label="Sort products">
+        <option value="default">Featured</option>
+        <option value="price-asc">Price: low → high</option>
+        <option value="price-desc">Price: high → low</option>
+        <option value="qc">Most QC photos</option>
+      </select>
+      <select id="cur" aria-label="Currency">
+        <option value="CNY">¥ CNY</option>
+        <option value="USD">$ USD</option>
+        <option value="EUR">€ EUR</option>
+        <option value="GBP">£ GBP</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="list-view">
+    <div class="intro">
+      <h1 id="site-title">Weidian finds, checked with real QC</h1>
+      <p id="site-sub">Every item links straight to the Weidian listing and your favourite agent. Tap any product to see its QC photos.</p>
+      <div class="stats"><span><b id="stat-items">0</b> items</span><span><b id="stat-qc">0</b> QC photos</span><span><b id="stat-cats">0</b> categories</span></div>
+      <p class="notice" id="sample-notice" hidden>Showing example products. Replace <code>products.csv</code> with your spreadsheet to list your own finds.</p>
+    </div>
+    <nav class="chips" id="chips" aria-label="Categories"></nav>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="product-view" hidden></section>
+</main>
+
+<footer>
+  <div class="wrap">Prices are the seller's Weidian price in ¥ CNY; other currencies are estimates. Shipping and agent fees are extra.</div>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="QC photo viewer">
+  <div class="lb-top"><span id="lb-count"></span><button class="lb-btn" id="lb-close">Close ✕</button></div>
+  <div class="lb-stage"><img id="lb-img" alt=""></div>
+  <div class="lb-nav"><button class="lb-btn" id="lb-prev">← Prev</button><button class="lb-btn" id="lb-next">Next →</button></div>
+</div>
+
+<!--
+  Example data. The site first tries to load products.csv next to this file;
+  if that isn't there it falls back to this block. Columns:
+  name, price (CNY), category, brand, link (weidian item URL), image, qc (photo URLs separated by |), notes
+-->
+<script type="text/csv" id="fallback-csv">
+name,price,category,brand,link,image,qc,notes
+Example — Retro Basketball Sneaker,358,Shoes,Example Brand,https://weidian.com/?userid=1762077627,,,Example row. Replace with your spreadsheet.
+Example — Heavyweight Zip Hoodie,229,Hoodies,Example Brand,https://weidian.com/?userid=1762077627,,,Example row. Fits true to size.
+Example — Washed Denim Jeans,189,Pants,Example Brand,https://weidian.com/?userid=1762077627,,,Example row.
+Example — Boxy Logo Tee,89,T-Shirts,Example Brand,https://weidian.com/?userid=1762077627,,,Example row.
+Example — Nylon Puffer Jacket,420,Jackets,Example Brand,https://weidian.com/?userid=1762077627,,,Example row.
+Example — Leather Belt,75,Accessories,Example Brand,https://weidian.com/?userid=1762077627,,,Example row.
+Example — Low Top Skate Shoe,265,Shoes,Example Brand,https://weidian.com/?userid=1762077627,,,Example row.
+Example — Knit Beanie,49,Accessories,Example Brand,https://weidian.com/?userid=1762077627,,,Example row.
+</script>
+
+<script>
+/* ---------- Settings: edit these ---------- */
+const CONFIG = {
+  csvUrl: "products.csv",            // or a Google Sheets "Publish to web → CSV" link
+  rates: { CNY: 1, USD: 0.14, EUR: 0.13, GBP: 0.11 },  // 1 CNY in each currency
+  // Agent links. {id} = Weidian itemID, {url} = encoded Weidian link.
+  // Add your affiliate/invite code to the end of any of these.
+  agents: [
+    { name: "KakoBuy",     url: "https://www.kakobuy.com/item/details?url={url}" },
+    { name: "CNFans",      url: "https://cnfans.com/product?id={id}&platform=WEIDIAN" },
+    { name: "Mulebuy",     url: "https://mulebuy.com/product?id={id}&platform=WEIDIAN" },
+    { name: "AllChinaBuy", url: "https://www.allchinabuy.com/en/page/buy/?url={url}" },
+    { name: "Sugargoo",    url: "https://www.sugargoo.com/#/home/productDetail?productLink={url}" },
+    { name: "Hoobuy",      url: "https://hoobuy.com/product/2/{id}" }
+  ]
+};
+
+/* ---------- CSV parsing ---------- */
+function parseCSV(text) {
+  const rows = []; let row = [], field = "", q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) {
+      if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+      else if (c === '"') q = false;
+      else field += c;
+    } else if (c === '"') q = true;
+    else if (c === ",") { row.push(field); field = ""; }
+    else if (c === "\n" || c === "\r") {
+      if (c === "\r" && text[i + 1] === "\n") i++;
+      row.push(field); field = ""; rows.push(row); row = [];
+    } else field += c;
+  }
+  if (field || row.length) { row.push(field); rows.push(row); }
+  const clean = rows.filter(r => r.some(v => v.trim()));
+  if (!clean.length) return [];
+  const head = clean[0].map(h => h.trim().toLowerCase());
+  const pick = (r, ...names) => { for (const n of names) { const i = head.indexOf(n); if (i >= 0 && r[i]) return r[i].trim(); } return ""; };
+  return clean.slice(1).map((r, i) => {
+    const link = pick(r, "link", "url", "weidian", "weidian link");
+    const qc = pick(r, "qc", "qc photos", "qc images").split(/[|\n]+|\s+(?=https?:)/).map(s => s.trim()).filter(Boolean);
+    return {
+      idx: i,
+      name: pick(r, "name", "product", "title", "item") || "Untitled item",
+      price: parseFloat(pick(r, "price", "price (cny)", "cny", "yuan").replace(/[^\d.]/g, "")) || 0,
+      category: pick(r, "category", "type") || "Other",
+      brand: pick(r, "brand"),
+      link,
+      itemId: (link.match(/itemI[Dd]=(\d+)/) || [])[1] || "",
+      image: pick(r, "image", "img", "photo", "picture") || qc[0] || "",
+      qc,
+      notes: pick(r, "notes", "note", "description", "batch")
+    };
+  });
+}
+
+/* ---------- Placeholder art for rows without an image ---------- */
+function placeholder(p) {
+  const hue = [...p.category].reduce((a, c) => a + c.charCodeAt(0), 0) % 360;
+  const initials = p.name.replace(/^Example\s*[—-]\s*/, "").split(/\s+/).slice(0, 2).map(w => w[0]).join("").toUpperCase();
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="hsl(${hue},45%,82%)"/><circle cx="300" cy="90" r="140" fill="hsl(${hue},55%,72%)"/><text x="40" y="350" font-family="Arial Black,Arial,sans-serif" font-size="120" font-weight="900" fill="hsl(${hue},40%,28%)">${initials}</text><text x="42" y="214" font-family="monospace" font-size="20" fill="hsl(${hue},40%,28%)">${p.category.toUpperCase()}</text></svg>`;
+  return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+}
+const imgOf = p => p.image || placeholder(p);
+
+/* ---------- State ---------- */
+let products = [], isSample = false;
+const state = { q: "", cat: "All", sort: "default", cur: "CNY" };
+try { state.cur = localStorage.getItem("finds-cur") || "CNY"; } catch (e) {}
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+function money(cny) {
+  const sym = { CNY: "¥", USD: "$", EUR: "€", GBP: "£" }[state.cur];
+  const v = cny * CONFIG.rates[state.cur];
+  const main = sym + (state.cur === "CNY" ? Math.round(v) : v.toFixed(2));
+  return state.cur === "CNY" ? main : `${main}<small>¥${Math.round(cny)}</small>`;
+}
+function agentLinks(p) {
+  if (!p.link) return [];
+  return CONFIG.agents
+    .filter(a => p.itemId || !a.url.includes("{id}"))
+    .map(a => ({ name: a.name, href: a.url.replace("{id}", p.itemId).replace("{url}", encodeURIComponent(p.link)) }));
+}
+
+/* ---------- List view ---------- */
+function filtered() {
+  const q = state.q.toLowerCase();
+  let list = products.filter(p => (state.cat === "All" || p.category === state.cat) &&
+    (!q || `${p.name} ${p.brand} ${p.category} ${p.notes}`.toLowerCase().includes(q)));
+  if (state.sort === "price-asc") list.sort((a, b) => a.price - b.price);
+  if (state.sort === "price-desc") list.sort((a, b) => b.price - a.price);
+  if (state.sort === "qc") list.sort((a, b) => b.qc.length - a.qc.length);
+  return list;
+}
+function card(p) {
+  return `<a class="card" href="#p-${p.idx}">
+    <div class="thumb"><img loading="lazy" src="${esc(imgOf(p))}" alt="${esc(p.name)}" referrerpolicy="no-referrer">
+      ${p.qc.length ? `<span class="badge">QC ${p.qc.length}</span>` : ""}</div>
+    <div class="card-body">
+      ${p.brand ? `<div class="card-brand">${esc(p.brand)}</div>` : ""}
+      <div class="card-name">${esc(p.name)}</div>
+      <div class="price">${money(p.price)}</div>
+    </div></a>`;
+}
+function renderList() {
+  const cats = ["All", ...new Set(products.map(p => p.category))];
+  $("#chips").innerHTML = cats.map(c => {
+    const n = c === "All" ? products.length : products.filter(p => p.category === c).length;
+    return `<button class="chip" aria-pressed="${c === state.cat}" data-cat="${esc(c)}">${esc(c)}<small>${n}</small></button>`;
+  }).join("");
+  const list = filtered();
+  $("#grid").innerHTML = list.length ? list.map(card).join("") : `<div class="empty">No products match “${esc(state.q)}”. Try another search or category.</div>`;
+  $("#stat-items").textContent = products.length;
+  $("#stat-qc").textContent = products.reduce((a, p) => a + p.qc.length, 0);
+  $("#stat-cats").textContent = cats.length - 1;
+  $("#sample-notice").hidden = !isSample;
+}
+
+/* ---------- Product view ---------- */
+let lbList = [], lbIdx = 0;
+function renderProduct(p) {
+  const agents = agentLinks(p);
+  const related = products.filter(x => x.category === p.category && x !== p).slice(0, 6);
+  $("#product-view").innerHTML = `
+    <button class="back" id="back">← All products</button>
+    <div class="product">
+      <div class="main-img"><img src="${esc(imgOf(p))}" alt="${esc(p.name)}" referrerpolicy="no-referrer"></div>
+      <div class="info">
+        ${p.brand ? `<p class="label">${esc(p.brand)}</p>` : ""}
+        <h2>${esc(p.name)}</h2>
+        <div class="price">${money(p.price)}</div>
+        ${p.notes ? `<p class="notes">${esc(p.notes)}</p>` : ""}
+        <dl class="meta">
+          <dt>Category</dt><dd>${esc(p.category)}</dd>
+          ${p.itemId ? `<dt>Weidian ID</dt><dd>${esc(p.itemId)}</dd>` : ""}
+          <dt>QC photos</dt><dd>${p.qc.length}</dd>
+        </dl>
+        <div class="row">
+          ${p.link ? `<a class="btn primary" href="${esc(p.link)}" target="_blank" rel="noopener">View on Weidian ↗</a>` : ""}
+          ${p.qc.length ? `<a class="btn" href="#qc" id="jump-qc">See QC (${p.qc.length})</a>` : ""}
+        </div>
+        ${agents.length ? `<p class="label">Buy with an agent</p>
+        <div class="agents">${agents.map(a => `<a class="btn" href="${esc(a.href)}" target="_blank" rel="noopener">${esc(a.name)} ↗</a>`).join("")}</div>` : ""}
+      </div>
+    </div>
+    <section class="qc" id="qc">
+      <div class="qc-head"><h3>QC photos <span class="qc-count">${p.qc.length}</span></h3>
+        <span class="label">Warehouse photos from real orders</span></div>
+      ${p.qc.length
+        ? `<div class="qc-grid">${p.qc.map((u, i) => `<button data-qc="${i}" aria-label="Open QC photo ${i + 1}"><img loading="lazy" src="${esc(u)}" alt="QC photo ${i + 1}" referrerpolicy="no-referrer"></button>`).join("")}</div>`
+        : `<div class="qc-empty">No QC photos for this item yet. Add photo links to the <b>qc</b> column of your spreadsheet.</div>`}
+    </section>
+    ${related.length ? `<section class="related"><h3>More ${esc(p.category)}</h3><div class="grid">${related.map(card).join("")}</div></section>` : ""}`;
+  lbList = p.qc;
+  $("#back").onclick = () => { location.hash = ""; };
+  const jq = $("#jump-qc");
+  if (jq) jq.onclick = e => { e.preventDefault(); $("#qc").scrollIntoView({ behavior: "smooth" }); };
+}
+
+/* ---------- Lightbox ---------- */
+function openLb(i) { lbIdx = i; showLb(); $("#lightbox").hidden = false; $("#lb-close").focus(); }
+function showLb() { $("#lb-img").src = lbList[lbIdx]; $("#lb-count").textContent = `QC ${lbIdx + 1} / ${lbList.length}`; }
+function stepLb(d) { lbIdx = (lbIdx + d + lbList.length) % lbList.length; showLb(); }
+function closeLb() { $("#lightbox").hidden = true; }
+
+/* ---------- Routing ---------- */
+function route() {
+  const m = location.hash.match(/^#p-(\d+)$/);
+  const p = m && products[+m[1]];
+  $("#list-view").hidden = !!p;
+  $("#product-view").hidden = !p;
+  if (p) { renderProduct(p); document.title = `${p.name} · Weidian Finds`; window.scrollTo(0, 0); }
+  else { renderList(); document.title = "Weidian Finds"; }
+}
+
+/* ---------- Events ---------- */
+$("#q").addEventListener("input", e => { state.q = e.target.value; if (location.hash) location.hash = ""; else renderList(); });
+$("#sort").addEventListener("change", e => { state.sort = e.target.value; renderList(); });
+$("#cur").addEventListener("change", e => { state.cur = e.target.value; try { localStorage.setItem("finds-cur", state.cur); } catch (e) {} route(); });
+$("#chips").addEventListener("click", e => { const b = e.target.closest("[data-cat]"); if (b) { state.cat = b.dataset.cat; renderList(); } });
+$("#home-link").addEventListener("click", e => { e.preventDefault(); location.hash = ""; });
+$("#product-view").addEventListener("click", e => { const b = e.target.closest("[data-qc]"); if (b) openLb(+b.dataset.qc); });
+$("#lb-close").onclick = closeLb; $("#lb-prev").onclick = () => stepLb(-1); $("#lb-next").onclick = () => stepLb(1);
+$("#lightbox").addEventListener("click", e => { if (e.target.id === "lightbox" || e.target.classList.contains("lb-stage")) closeLb(); });
+document.addEventListener("keydown", e => {
+  if ($("#lightbox").hidden) return;
+  if (e.key === "Escape") closeLb(); if (e.key === "ArrowLeft") stepLb(-1); if (e.key === "ArrowRight") stepLb(1);
+});
+window.addEventListener("hashchange", route);
+
+/* ---------- Boot ---------- */
+(async function boot() {
+  $("#cur").value = state.cur;
+  let text = "";
+  try { const r = await fetch(CONFIG.csvUrl, { cache: "no-store" }); if (r.ok) text = await r.text(); } catch (e) {}
+  if (!text.trim() || /^\s*</.test(text)) text = $("#fallback-csv").textContent.trim();
+  products = parseCSV(text);
+  isSample = products.length > 0 && products.every(p => /^Example\b/.test(p.name));
+  route();
+})();
+</script>
+</body>
+</html>
