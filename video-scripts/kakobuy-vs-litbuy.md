@@ -71,12 +71,12 @@
 | **0:16–0:20** · REZULTAT | Nazad na split-screen. Kakobuy "$50" **se trese, pobeli i napukne**. LitBuy "$27" **svetli zeleno** i pulsira. Veliki tekst preko obe polovine sa **zoom punch-om**. SFX: grebanje ploče → meme "emotional damage" udarac. | "To je dvadeset tri dolara manje nego na Kakobuy-u. Četrdeset šest posto. Za isti paket, brate." | **$23 JEFTINIJE OD KAKOBUY-A 🔥** <br> **(−46%)** <br> <sub>*uz registraciju preko linka u biou</sub> |
 | **0:20–0:26** · RUNDA 2: KUPONI | Boks zvono. Karta "RUNDA 2". **Split-screen** skrol obe stranice sa kuponima: `[SNIMAK EKRANA: Kakobuy kuponi]` vs `[SNIMAK EKRANA: LitBuy kuponi]`. Kuponi **izleću sa LitBuy strane** kao karte iz špila (jedan po bitu). Veliki pečat **"LITBUY POBEĐUJE ✅"** lupi na LitBuy stranu, Kakobuy strana se zatamni. SFX: šuškanje karata + pečat. | "Druga runda, kuponi. LitBuy ima bolje kupone, tu nema mnogo priče. `[Opciono: navedi jedan kupon koji si stvarno iskoristio]`" | **RUNDA 2: KUPONI 🎟️** <br> **BOLJI KUPONI → LITBUY ✅** |
 | **0:26–0:32** · REZULTAT TABELA | **Esports tabela** na tamnoj pozadini. Kolona LitBuy i kolona Kakobuy. Svaki red ulazi **na bit**, ✅ za LitBuy i ❌ za Kakobuy. Konačni rezultat se lupi dole sa **zoom punch-om**. SFX: tik, tik, tik, tik → pobednička truba. | "Da sumiramo. Jeftinija dostava i bez linka. Minus četrdeset posto sa linkom. Dvadeset sedam umesto pedeset. Bolji kuponi. Ovo nije ni bila borba." | **KONAČAN REZULTAT 🏆** <br> ✅ Dostava $45 vs $50 (−10%) <br> ✅ −40% na dostavu preko mog linka <br> ✅ $27 vs $50 (−46%)* <br> ✅ Bolji kuponi <br> **LITBUY 2 – 0 KAKOBUY** <br> <sub>*uz registraciju preko linka u biou</sub> |
-| **0:32–0:40** · CTA | Krupni plan kreatora u kameru, pokazuje gore. **Animirane strelice** skakuću ka profilnoj slici. Dve kartice **ulaze na bit**: kartica 1 (zelena) za link, kartica 2 (bela) za tabelu. Mala oznaka "affiliate link" stoji u gornjem uglu. **Loop trik:** poslednji frejm se seče nazad na hook "$50 🆚 $27" da replay izgleda kao jedan krug. | "Link ti je u biou. Registruj se preko njega i dostava ti je četrdeset posto jeftinija. I baci pogled na tabelu u biou, ima brdo stvari. Ajde, ne čekaj." | **🔗 REGISTRACIJA → −40% NA DOSTAVU** <br> **📋 TABELA U BIOU → BRDO STVARI** <br> **👆 LINK U BIOU** <br> <sub>affiliate link</sub> |
+| **0:32–0:40** · CTA | Krupni plan kreatora u kameru, pokazuje gore. **Animirane strelice** skakuću ka profilnoj slici. Dve kartice **ulaze na bit**: kartica 1 (zelena) za link, kartica 2 (bela) za sheet. Mala oznaka "affiliate link" stoji u gornjem uglu. **Loop trik:** poslednji frejm se seče nazad na hook "$50 🆚 $27" da replay izgleda kao jedan krug. | "Link ti je u biou. Registruj se preko njega i dostava ti je četrdeset posto jeftinija. I baci pogled na sheet u biou, ima brdo stvari. Ajde, ne čekaj." | **🔗 REGISTRACIJA → −40% NA DOSTAVU** <br> **📋 SHEET U BIOU → BRDO STVARI** <br> **👆 LINK U BIOU** <br> <sub>affiliate link</sub> |
 
 ### Opis (SR)
 
 > Isti paket od 2 kile do Srbije 📦 Kakobuy: $50. LitBuy: $45, a samo **$27** kad se registruješ preko linka u mom biou (−40% na dostavu). To je $23 jeftinije 🔥 I kuponi su bolji na LitBuy-u.
-> Brdo stvari te čeka u tabeli u biou 📋
+> Brdo stvari te čeka u sheetu u biou 📋
 >
 > **#reklama · Affiliate link:** `[dobijam proviziju / nagradu]` kad se registruješ preko njega. Cena od $27 važi samo uz registraciju preko linka.
 
@@ -96,3 +96,22 @@
 | Stamp / sticker | 0:08, 0:24 | Overshoot scale 120%→100% with a tiny rotation |
 | Scoreboard ticks | 0:26–0:32 | One line per beat |
 | Loop cut | 0:40 → 0:00 | End on a frame that visually matches the hook |
+
+---
+
+## Voiceover for the rendered videos (timed to the scenes)
+
+Paste each line into ElevenLabs, or the whole column as one take with short pauses. Recommended settings: Eleven Multilingual v2 or v3, a young, energetic male or female voice, stability around 35–45%, style around 30%. Prices are rounded in speech ("over fifty", "under twenty-five") because the exact figures are already on screen.
+
+| Time | EN | SR |
+|---|---|---|
+| 0:00–2.6 | Same parcel. Over fifty dollars… or under twenty-five. | Isti paket. Preko pedeset dolara… ili ispod dvadeset pet. |
+| 2.6–4.2 | Kakobuy versus LitBuy. | Kakobuy protiv LitBuy-a. |
+| 4.2–8.2 | Two kilos to Serbia. Kakobuy's cheapest line: over fifty dollars. | Dve kile do Srbije. Kakobuy, najjeftinija linija: preko pedeset dolara. |
+| 8.2–13.2 | Same parcel on LitBuy: forty-one and change. | Isti paket na LitBuy-u: četrdeset jedan i nešto. |
+| 13.2–16.6 | Nine bucks cheaper. And that's without a coupon. | Devet dolara jeftinije. I to bez kupona. |
+| 16.6–23.2 | Now sign up through the link in my bio: forty percent off shipping. Under twenty-five dollars. | E sad, registruj se preko linka u biou i dostava ti je četrdeset posto jeftinija. Ispod dvadeset pet dolara. |
+| 23.2–27.0 | That's over twenty-five dollars cheaper. Basically half price. | To je preko dvadeset pet dolara manje. Praktično pola cene. |
+| 27.0–32.0 | Coupons? Kakobuy: ten percent. LitBuy: forty for signing up, plus twenty-five on Discord. | Kuponi? Kakobuy daje deset posto. LitBuy četrdeset za registraciju, plus dvadeset pet preko Discorda. |
+| 32.0–36.4 | LitBuy wins both rounds. Not even close. | LitBuy uzima obe runde. Nema tu priče. |
+| 36.4–42.1 | Link in my bio for forty percent off shipping. And check the sheet, huge selection of items. | Link je u biou, registruj se i uzmi minus četrdeset posto na dostavu. I baci pogled na sheet, ima brdo stvari. |
