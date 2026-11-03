@@ -12,6 +12,21 @@
 - Sign-up link discount: shipping is 40% cheaper ($45 − 40% = $27)
 - Coupons: LitBuy has better coupons than Kakobuy (no coupon numbers given, so none appear in the video)
 
+> **UPDATE (3 Nov 2026): real prices from the screen recordings. The rendered videos use these numbers.**
+>
+> | 2 kg → Serbia | Price | Line |
+> |---|---|---|
+> | Kakobuy (cheapest line) | **$50.63** | EUB, 15–20 days |
+> | LitBuy (no coupon) | **$41.57** (shown struck through from $65.55) | ZF-Airpost-RS-1, 10–18 business days |
+> | LitBuy + 40% sign-up coupon | **$24.94** (= $41.57 × 0.6, calculated) | — |
+>
+> - Without a coupon: LitBuy is **$9.06 cheaper (−18%)**
+> - With the sign-up coupon: LitBuy is **$25.69 cheaper (−51%)**
+> - Coupons, as shown on each site's banner: LitBuy has a 40% OFF sign-up shipping coupon plus 25% OFF for joining Discord. Kakobuy has a 10% shipping subsidy during its 11.11 sale (Nov 2–11).
+> - Silent renders (sound gets added in TikTok): `renders/kakobuy-vs-litbuy_EN.mp4`, `renders/kakobuy-vs-litbuy_SR.mp4`
+>
+> ⚠️ **Verify before posting:** $24.94 assumes the 40% coupon applies to the already discounted $41.57 with no cap. Confirm it at checkout on a new account.
+
 **Production notes before filming**
 - Screen-record both shipping calculators showing **2 kg → Serbia**, so the on-screen B-roll matches the numbers. Blur any account details.
 - Screen-record both coupon pages. If you want to name a specific coupon, use one you actually have: `[COUPON NAME / VALUE]`.
