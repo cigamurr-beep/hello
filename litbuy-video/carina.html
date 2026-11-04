@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<title>Carina vest</title>
+<style>
+  :root{--acc:#ffd23f;--red:#ff3b47;--ok:#29d17a;--card:#1b1438;--line:#3a3170}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1080px;height:1920px;overflow:hidden;background:#140a2a}
+  body{font-family:"Inter","Noto Color Emoji",sans-serif;color:#fff}
+  #stage{position:relative;width:1080px;height:1920px;overflow:hidden;
+    background:radial-gradient(900px 1100px at 15% 20%,#7b3cff 0%,transparent 60%),
+               radial-gradient(900px 1000px at 95% 10%,#c45cff 0%,transparent 55%),
+               radial-gradient(1000px 900px at 50% 110%,#2a0f55 0%,transparent 60%),
+               linear-gradient(180deg,#3a1677,#140a2a 75%)}
+  .glow{position:absolute;width:30px;top:0;bottom:0;background:linear-gradient(#fff0,#e9c8ff,#fff0);filter:blur(10px);opacity:.55}
+  #g1{left:70px} #g2{right:70px}
+  #tag{position:absolute;top:150px;left:50%;transform:translateX(-50%);padding:14px 34px;border-radius:999px;
+    background:var(--red);font-weight:900;font-size:38px;letter-spacing:3px;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+  #tag i{display:inline-block;width:18px;height:18px;border-radius:50%;background:#fff;margin-right:14px;vertical-align:middle}
+  .scene{position:absolute;left:0;right:0;top:300px;height:820px;opacity:0}
+  .pop{position:absolute;transform-origin:center;opacity:0}
+  .card{background:#fff;color:#111;border-radius:36px;box-shadow:0 30px 70px rgba(0,0,0,.45)}
+  .dark{background:var(--card);color:#fff;border:3px solid var(--line)}
+  .big{font-weight:900}
+  .emoji{font-family:"Noto Color Emoji";line-height:1}
+  .stamp{border:12px solid var(--red);color:var(--red);font-weight:900;border-radius:24px;padding:10px 30px;background:rgba(255,255,255,.92)}
+  #cap{position:absolute;left:60px;right:60px;top:1230px;height:200px;display:flex;flex-wrap:wrap;align-content:center;align-items:center;justify-content:center;gap:0 26px;text-align:center}
+  #cap span{font-weight:900;font-size:96px;line-height:1.05;color:#fff;
+    text-shadow:0 6px 0 rgba(0,0,0,.55),0 0 30px rgba(0,0,0,.6);-webkit-text-stroke:4px #000;paint-order:stroke fill}
+  #cap span.hl{color:var(--acc)}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="glow" id="g1"></div><div class="glow" id="g2"></div>
+  <div id="tag"><i></i>VESTI · CARINA</div>
+
+  <!-- 1: EU + 1. nov -->
+  <div class="scene" id="s1">
+    <svg class="pop" data-d="0" style="left:190px;top:40px;width:700px;height:470px" viewBox="0 0 300 200">
+      <rect width="300" height="200" rx="14" fill="#003399"/>
+      <g fill="#ffcc00" id="stars"></g>
+    </svg>
+    <div class="pop card big" data-d="0.9" style="left:120px;top:470px;width:300px;padding:20px 0;text-align:center">
+      <div style="background:var(--red);color:#fff;font-size:40px;margin:-20px 0 10px;border-radius:36px 36px 0 0;padding:10px 0">NOV</div>
+      <div style="font-size:140px;line-height:1">1.</div></div>
+    <div class="pop emoji" data-d="1.4" style="left:560px;top:470px;font-size:240px">📦</div>
+    <div class="pop big" data-d="2.0" data-rot="-12" style="left:600px;top:500px;font-size:260px;color:var(--red);text-shadow:0 8px 20px #000">✕</div>
+  </div>
+
+  <!-- 2: niko ne prica / dobre vesti -->
+  <div class="scene" id="s2">
+    <div class="pop emoji" data-d="0" style="left:390px;top:40px;font-size:300px">🤫</div>
+    <div class="pop card big" data-d="0.6" style="left:140px;top:420px;width:800px;padding:34px 0;text-align:center;font-size:66px">Niko ne priča o ovome</div>
+    <div class="pop big" data-d="1.6" data-rot="-4" style="left:230px;top:610px;width:620px;padding:24px 0;text-align:center;font-size:70px;background:var(--ok);border-radius:30px">DOBRE VESTI</div>
+  </div>
+
+  <!-- 3: Srbija nije u EU -->
+  <div class="scene" id="s3">
+    <svg class="pop" data-d="0" style="left:60px;top:80px;width:430px;height:290px" viewBox="0 0 300 200">
+      <rect width="300" height="200" rx="14" fill="#003399"/><g fill="#ffcc00" class="stars2"></g></svg>
+    <div class="pop big" data-d="0.5" style="left:478px;top:120px;font-size:200px;color:var(--red);text-shadow:0 8px 20px #000">≠</div>
+    <svg class="pop" data-d="0.8" style="left:590px;top:80px;width:430px;height:290px" viewBox="0 0 300 200">
+      <clipPath id="cp"><rect width="300" height="200" rx="14"/></clipPath>
+      <g clip-path="url(#cp)"><rect width="300" height="67" fill="#c6363c"/><rect y="67" width="300" height="67" fill="#0c4076"/><rect y="133" width="300" height="67" fill="#fff"/></g></svg>
+    <div class="pop card big" data-d="1.6" style="left:110px;top:470px;width:860px;padding:34px 20px;text-align:center;font-size:64px;line-height:1.15">Srbija nije u EU<br><span style="color:var(--ok)">Nova pravila nas ne pogađaju</span></div>
+  </div>
+
+  <!-- 4: sta znaci za Srbiju -->
+  <div class="scene" id="s4">
+    <div class="pop emoji" data-d="0" style="left:410px;top:20px;font-size:260px">📍</div>
+    <div class="pop big" data-d="0.4" style="left:0;right:0;top:330px;text-align:center;font-size:150px;line-height:1">Živiš u<br><span style="color:var(--acc)">Srbiji?</span></div>
+  </div>
+
+  <!-- 5: W u komentare -->
+  <div class="scene" id="s5">
+    <div class="pop emoji" data-d="0" style="left:380px;top:120px;font-size:320px">🏆</div>
+    <div class="pop big w" data-d="0.3" style="left:110px;top:60px;font-size:150px;color:var(--acc)">W</div>
+    <div class="pop big w" data-d="0.5" style="left:800px;top:120px;font-size:130px;color:var(--ok)">W</div>
+    <div class="pop big w" data-d="0.7" style="left:160px;top:430px;font-size:120px;color:#fff">W</div>
+    <div class="pop big w" data-d="0.9" style="left:780px;top:450px;font-size:160px;color:var(--acc)">W</div>
+    <div class="pop big w" data-d="1.1" style="left:470px;top:560px;font-size:110px;color:var(--ok)">W</div>
+    <div class="pop big w" data-d="1.3" style="left:60px;top:640px;font-size:100px;color:#fff">W</div>
+    <div class="pop big w" data-d="1.5" style="left:900px;top:650px;font-size:100px;color:#fff">W</div>
+  </div>
+
+  <!-- 6: carina ostaje ista -->
+  <div class="scene" id="s6">
+    <div class="pop" data-d="0" style="left:390px;top:0px;width:300px;height:720px;background:#222;border-radius:60px;box-shadow:0 30px 70px rgba(0,0,0,.5)">
+      <div style="width:190px;height:190px;border-radius:50%;background:#3a1010;margin:30px auto 0"></div>
+      <div style="width:190px;height:190px;border-radius:50%;background:#3a3410;margin:30px auto 0"></div></div>
+    <div class="pop" data-d="0.5" style="left:445px;top:490px;width:190px;height:190px;border-radius:50%;background:var(--ok);box-shadow:0 0 80px var(--ok)"></div>
+    <div class="pop card big" data-d="1.4" data-rot="-3" style="left:120px;top:740px;width:840px;padding:30px 0;text-align:center;font-size:62px">Carina: <span style="color:#14a85a">bez promena ✓</span></div>
+  </div>
+
+  <!-- 7: EU reforma PID -->
+  <div class="scene" id="s7">
+    <div class="pop card" data-d="0" style="left:150px;top:30px;width:780px;padding:46px 50px">
+      <div class="big" style="font-size:50px;color:#003399">EU carinska reforma</div>
+      <div style="height:16px;background:#ddd;border-radius:8px;margin-top:34px"></div>
+      <div style="height:16px;background:#ddd;border-radius:8px;margin-top:22px;width:80%"></div>
+      <div style="height:16px;background:#ddd;border-radius:8px;margin-top:22px;width:90%"></div>
+      <div style="height:16px;background:#ddd;border-radius:8px;margin-top:22px;width:60%"></div>
+      <div style="height:16px;background:#ddd;border-radius:8px;margin-top:22px;width:85%"></div></div>
+    <div class="pop big" data-d="1.0" data-rot="-6" style="left:330px;top:440px;width:420px;padding:20px 0;text-align:center;font-size:170px;background:var(--acc);color:#111;border-radius:40px;box-shadow:0 20px 50px rgba(0,0,0,.5)">PID</div>
+  </div>
+
+  <!-- 8: svaki paket mora PID -->
+  <div class="scene" id="s8">
+    <div class="pop emoji" data-d="0" style="left:290px;top:40px;font-size:500px">📦</div>
+    <div class="pop card" data-d="0.8" data-rot="-8" style="left:520px;top:390px;width:400px;padding:22px 26px">
+      <div class="big" style="font-size:50px">PID</div>
+      <svg width="350" height="110" viewBox="0 0 70 22" style="margin-top:10px"><g fill="#111" id="bars"></g></svg></div>
+  </div>
+
+  <!-- 9: proizvodjac i poreklo -->
+  <div class="scene" id="s9">
+    <div class="pop card" data-d="0" style="left:120px;top:60px;width:840px;padding:46px 50px;font-size:52px;line-height:1.7">
+      <div><b>Proizvođač:</b> <span style="background:#e7e3f5;border-radius:10px;padding:0 70px"></span></div>
+      <div><b>Poreklo:</b> <span style="background:#e7e3f5;border-radius:10px;padding:0 90px"></span></div>
+      <div><b>Legit:</b> <span style="color:#14a85a">✓</span> / <span style="color:var(--red)">✕</span></div></div>
+    <div class="pop emoji" data-d="0.9" style="left:640px;top:360px;font-size:300px">🔍</div>
+  </div>
+
+  <!-- 10: zaplenjeno / kazna -->
+  <div class="scene" id="s10">
+    <div class="pop emoji" data-d="0" style="left:330px;top:20px;font-size:420px">📦</div>
+    <div class="pop stamp" data-d="0.7" data-rot="-14" style="left:150px;top:230px;font-size:110px">ZAPLENJENO</div>
+    <div class="pop card big" data-d="1.8" data-rot="6" style="left:560px;top:540px;padding:24px 40px;font-size:80px;color:var(--red)">KAZNA</div>
+  </div>
+
+  <!-- 11: sok -->
+  <div class="scene" id="s11">
+    <div class="pop emoji" data-d="0" style="left:300px;top:80px;font-size:480px">😳</div>
+  </div>
+
+  <!-- 12: Srbija narucuje kao i do sad -->
+  <div class="scene" id="s12">
+    <svg class="pop" data-d="0" style="left:240px;top:30px;width:600px;height:400px" viewBox="0 0 300 200">
+      <clipPath id="cp2"><rect width="300" height="200" rx="14"/></clipPath>
+      <g clip-path="url(#cp2)"><rect width="300" height="67" fill="#c6363c"/><rect y="67" width="300" height="67" fill="#0c4076"/><rect y="133" width="300" height="67" fill="#fff"/></g></svg>
+    <div class="pop emoji" data-d="0.6" style="left:170px;top:420px;font-size:260px">📦</div>
+    <div class="pop" data-d="1.0" style="left:620px;top:450px;width:260px;height:260px;border-radius:50%;background:var(--ok);display:flex;align-items:center;justify-content:center;font-size:190px;font-weight:900">✓</div>
+  </div>
+
+  <!-- 13: CTA follow -->
+  <div class="scene" id="s13">
+    <div class="pop emoji" data-d="0" style="left:200px;top:60px;font-size:240px">💬</div>
+    <div class="pop emoji bell" data-d="0.4" style="left:620px;top:60px;font-size:240px">🔔</div>
+    <div class="pop big" data-d="0.9" style="left:240px;top:430px;width:600px;padding:34px 0;text-align:center;font-size:84px;background:var(--red);border-radius:30px;box-shadow:0 20px 50px rgba(0,0,0,.5)">+ Zaprati</div>
+  </div>
+
+  <div id="cap"></div>
+</div>
+
+<script src="seg_carina.js"></script>
+<script>
+window.SEG = window.SEG || [];
+window.TOTAL = window.TOTAL || 10;
+
+// build EU stars
+function stars(g,cx,cy,r,s){for(let i=0;i<12;i++){const a=i/12*Math.PI*2;const x=cx+Math.cos(a)*r,y=cy+Math.sin(a)*r;
+  const p=[];for(let k=0;k<10;k++){const rr=k%2?s*0.4:s;const aa=-Math.PI/2+k*Math.PI/5;p.push((x+Math.cos(aa)*rr).toFixed(1)+','+(y+Math.sin(aa)*rr).toFixed(1));}
+  const el=document.createElementNS('http://www.w3.org/2000/svg','polygon');el.setAttribute('points',p.join(' '));g.appendChild(el);}}
+stars(document.getElementById('stars'),150,100,62,11);
+document.querySelectorAll('.stars2').forEach(g=>stars(g,150,100,62,11));
+// barcode
+{const g=document.getElementById('bars');let x=0;const w=[1,2,1,3,1,1,2,1,3,2,1,1,2,3,1,2,1,1,3,1,2,1,2,1,1,3,2,1];for(let i=0;i<w.length&&x<70;i++){if(i%2===0){const r=document.createElementNS('http://www.w3.org/2000/svg','rect');r.setAttribute('x',x);r.setAttribute('y',0);r.setAttribute('width',w[i]);r.setAttribute('height',22);g.appendChild(r);}x+=w[i]+0.6;}}
+
+const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const ease=t=>1-Math.pow(1-cl(t),3);
+const back=t=>{t=cl(t);const c1=1.9,c3=c1+1;return 1+c3*Math.pow(t-1,3)+c1*Math.pow(t-1,2);};
+const prog=(t,a,b)=>cl((t-a)/(b-a));
+const lerp=(a,b,t)=>a+(b-a)*t;
+
+// caption chunks (1-3 words, like the reference)
+function chunks(text){
+  const w=text.split(' ');const out=[];let cur=[];
+  w.forEach(x=>{const cand=[...cur,x].join(' ');if(cur.length&&(cand.length>13||cur.length>=3)){out.push(cur.join(' '));cur=[x];}else cur.push(x);
+    if(/[.,!?…]$/.test(x)){out.push(cur.join(' '));cur=[];}});
+  if(cur.length)out.push(cur.join(' '));return out;}
+const HL=/^(EU|PID|Srbij|carin|kazn|zaplenjen|W$|dobre|vesti|nemogu|ista|novembr|haul)/i;
+SEG.forEach(s=>{const c=chunks(s.text);const tot=c.reduce((a,x)=>a+x.length+3,0);let acc=s.va;
+  s.ch=c.map(x=>{const d=(s.vb-s.va)*(x.length+3)/tot;const o={t:x,a:acc,b:acc+d};acc+=d;return o;});});
+
+let lastChunk=null;
+function render(t){
+  document.getElementById('g1').style.opacity=.4+Math.sin(t*2)*.15;
+  document.getElementById('g2').style.opacity=.4+Math.cos(t*2.3)*.15;
+  SEG.forEach((s,i)=>{
+    const el=document.getElementById(s.id); if(!el) return;
+    const last=i===SEG.length-1, vis=t>=s.a&&(t<s.b||last);
+    el.style.opacity=vis?1:0; if(!vis) return;
+    const l=t-s.a;
+    // whole-scene subtle zoom (like a slow push-in)
+    el.style.transform=`scale(${1+l*0.012})`;
+    el.querySelectorAll('.pop').forEach(p=>{
+      const d=+p.dataset.d||0, rot=+(p.dataset.rot||0);
+      const pp=prog(l,d,d+0.35);
+      p.style.opacity=pp>0?1:0;
+      const fl=Math.sin((t+d)*2.2)*6;
+      p.style.transform=`translateY(${fl}px) rotate(${lerp(rot-18,rot,ease(pp))}deg) scale(${lerp(0.2,1,back(pp))})`;
+      if(p.classList.contains('bell')) p.style.transform+=` rotate(${Math.sin(l*14)*12*(pp>=1?1:0)}deg)`;
+    });
+  });
+  // captions
+  const cap=document.getElementById('cap');let ch=null;
+  for(const s of SEG){for(const c of s.ch){if(t>=c.a&&t<c.b+0.12){ch=c;}}}
+  if(!ch){cap.innerHTML='';lastChunk=null;return;}
+  if(ch!==lastChunk){cap.innerHTML=ch.t.split(' ').map(w=>`<span class="${HL.test(w)?'hl':''}">${w}</span>`).join(' ');lastChunk=ch;}
+  const p=prog(t,ch.a,ch.a+0.12);
+  cap.style.transform=`scale(${lerp(0.7,1,back(p))})`;
+}
+window.render=render; render(0);
+</script>
+</body>
+</html>
